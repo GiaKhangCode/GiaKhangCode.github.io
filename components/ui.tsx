@@ -165,7 +165,7 @@ export function Button({
     "group inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-semibold transition-[translate,background-color,color,border-color] duration-200",
     size === "md" ? "h-12 px-6" : "h-10 px-4 text-sm",
     variant === "primary"
-      ? "bg-cobalt text-white shadow-[0_8px_24px_-10px_var(--cobalt)] hover:-translate-y-0.5"
+      ? "bg-fg text-bg shadow-[0_8px_20px_-12px_rgb(11_21_48/0.7)] hover:-translate-y-0.5"
       : "border-2 border-fg text-fg hover:bg-fg hover:text-bg",
     className,
   ].join(" ");

@@ -139,7 +139,7 @@ export default function Contact() {
                       aria-pressed={on}
                       onClick={() => setSubject(on ? "" : p)}
                       className={`rounded-full border-2 px-3.5 py-1.5 text-sm font-medium transition-colors ${
-                        on ? "border-cobalt bg-cobalt text-white" : "border-line text-muted hover:border-fg hover:text-fg"
+                        on ? "border-fg bg-fg text-bg" :"border-line text-muted hover:border-fg hover:text-fg"
                       }`}
                     >
                       {p}

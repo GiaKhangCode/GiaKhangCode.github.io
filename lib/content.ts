@@ -74,7 +74,6 @@ const vi = {
     hint: "Nhấn thử một phím",
     idle: "nhấn một phím bất kỳ…",
     space: "ngôn ngữ chính",
-    focusTag: "trọng tâm",
   },
   certs: {
     kicker: "Chứng chỉ",
@@ -174,7 +173,6 @@ const en: Dict = {
     hint: "Go on, press a key",
     idle: "press any key…",
     space: "main language",
-    focusTag: "focus",
   },
   certs: {
     kicker: "Certificates",

@@ -104,9 +104,11 @@ function Key({
       onClick={press}
       className={`group relative inline-flex h-14 items-center gap-2.5 rounded-xl border-2 border-fg px-4 text-[0.95rem] font-semibold tracking-tight transition-[translate,box-shadow] duration-100 ease-out select-none ${
         down
-          ? "translate-y-[5px] shadow-[0_0_0_var(--fg)]"
-          : "shadow-[0_5px_0_var(--fg)] hover:translate-y-[2px] hover:shadow-[0_3px_0_var(--fg)]"
-      } ${accent ? "bg-cobalt text-white" : "bg-bg text-fg"} ${
+          ? "translate-y-[5px] shadow-[0_0_0_var(--key-side)]"
+          : "shadow-[0_5px_0_var(--key-side)] hover:translate-y-[2px] hover:shadow-[0_3px_0_var(--key-side)]"
+      } ${
+        accent ? "bg-cobalt text-white [--key-side:var(--fg)]" : "bg-bg text-fg [--key-side:var(--fg)]"
+      } ${
         wide ? "min-w-[min(100%,22rem)] flex-1 justify-between sm:flex-none" : ""
       }`}
     >
@@ -223,14 +225,7 @@ export default function Skills() {
             <div className="mt-7 space-y-6">
               {rows.map((row) => (
                 <div key={row.label} className="grid gap-3 lg:grid-cols-[11rem_1fr] lg:items-center lg:gap-6">
-                  <Label className="flex items-center gap-2">
-                    {row.label}
-                    {row.accent && (
-                      <span className="rounded-full bg-cobalt px-2 py-0.5 text-[10px] tracking-normal text-white normal-case">
-                        {t.skills.focusTag}
-                      </span>
-                    )}
-                  </Label>
+                  <Label>{row.label}</Label>
                   <div className="flex flex-wrap gap-x-3 gap-y-4 pb-[5px]">
                     {row.items.map((name) => (
                       <Key key={name} name={name} accent={row.accent} onPress={() => show(name, row.label)} />
