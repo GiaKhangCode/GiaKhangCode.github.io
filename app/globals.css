@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Màu ---------- */
+:root {
+  --bg: #ffffff;
+  --surface: #f3f6ff;
+  --line: #e0e6f5;
+  --fg: #0b1530;
+  --muted: #4b5776;
+  --cobalt: #2f5bff;
+  --cobalt-ink: #ffffff; /* chữ trên nền cobalt */
+  --sky: #8fb4ff;
+  --ice: #eaf0ff;
+  --chip: #eaf0ff;
+  --chip-fg: #2346d6;
+}
+
+.dark {
+  --bg: #0b1530;
+  --surface: #111d3d;
+  --line: #22305a;
+  --fg: #f4f7ff;
+  --muted: #a3b0d2;
+  --cobalt: #4d73ff;
+  --cobalt-ink: #ffffff;
+  --sky: #8fb4ff;
+  --ice: #17244a;
+  --chip: #1a2a57;
+  --chip-fg: #b9cdff;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-cobalt: var(--cobalt);
+  --color-cobalt-ink: var(--cobalt-ink);
+  --color-sky: var(--sky);
+  --color-ice: var(--ice);
+  --color-chip: var(--chip);
+  --color-chip-fg: var(--chip-fg);
+
+  --font-sans: var(--font-be-vietnam), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-blink: blink 1.1s steps(1) infinite;
+  --animate-spin-slow: spin 18s linear infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background: var(--cobalt);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cobalt);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Lưới ô vuông trang trí */
+.bg-grid {
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Phần tử trang trí lệch theo chuột (biến --mx/--my được set trong HeroArt) */
+.parallax {
+  transform: translate(
+    calc(var(--mx, 0) * var(--depth, 10) * 1px),
+    calc(var(--my, 0) * var(--depth, 10) * 1px)
+  );
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Hiện dần khi cuộn tới */
+.reveal {
+  opacity: 0;
+  translate: 0 24px;
+  transition:
+    opacity 0.7s ease,
+    translate 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  translate: 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    translate: 0 0;
+  }
+  .parallax {
+    transform: none;
+  }
+}
