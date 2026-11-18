@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { sectionOrder } from "@/lib/content";
 import { useLang } from "@/lib/i18n";
 import { Close, Menu } from "./Icons";
+import { Button } from "./ui";
 
-const links = ["about", "skills", "certs", "projects", "contact"] as const;
+// "Liên hệ" không nằm trong menu vì đã có nút CTA riêng
+const links = sectionOrder.filter((id) => id !== "contact") as Exclude<(typeof sectionOrder)[number], "contact">[];
 
 export default function Navbar() {
   const { t, lang, toggle } = useLang();
@@ -99,12 +102,9 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-2 md:flex">
           {LangSwitch}
-          <a
-            href="#contact"
-            className="inline-flex h-10 items-center rounded-full bg-fg px-5 text-sm font-medium text-bg transition-colors hover:bg-cobalt hover:text-white"
-          >
+          <Button href="#contact" size="sm" trailing={null}>
             {t.nav.cta}
-          </a>
+          </Button>
         </div>
 
         <button
@@ -140,7 +140,14 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        <div className="mt-5">{LangSwitch}</div>
+        <div className="mt-5 flex items-center gap-3">
+          {LangSwitch}
+          <span onClick={() => setOpen(false)}>
+            <Button href="#contact" size="sm" trailing={null}>
+              {t.nav.cta}
+            </Button>
+          </span>
+        </div>
       </div>
     </header>
   );

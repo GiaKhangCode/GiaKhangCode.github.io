@@ -116,8 +116,8 @@ export default function HeroArt() {
           </div>
 
           <div className="absolute top-[12%] right-[7%] left-[55%]" aria-hidden="true">
-            <div className="flex h-[4.6cqw] items-center justify-between rounded-full bg-white px-[1.8cqw] text-[#0b1530]">
-              <span className="h-[0.9cqw] w-[45%] rounded-full bg-[#0b1530]/15" />
+            <div className="flex h-[4.6cqw] items-center justify-between rounded-full bg-white px-[1.8cqw] text-navy">
+              <span className="h-[0.9cqw] w-[45%] rounded-full bg-navy/15" />
               <Search className="h-[2.6cqw] w-[2.6cqw]" strokeWidth={2.4} />
             </div>
             <div className="mt-[3.2cqw] space-y-[1.8cqw]">
@@ -169,7 +169,7 @@ export default function HeroArt() {
         aria-hidden="true"
       >
         <div className="animate-float">
-          <div className="relative rounded-[2cqw] border-2 border-fg bg-sky px-[3cqw] py-[1.6cqw] font-mono text-[4.2cqw] leading-none font-medium text-[#0b1530]">
+          <div className="relative rounded-[2cqw] border-2 border-fg bg-sky px-[3cqw] py-[1.6cqw] font-mono text-[4.2cqw] leading-none font-medium text-navy">
             RAG
             <span className="absolute -bottom-[1.9cqw] left-[24%] h-[3cqw] w-[3cqw] rotate-45 border-r-2 border-b-2 border-fg bg-sky" />
           </div>

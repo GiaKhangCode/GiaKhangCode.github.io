@@ -43,6 +43,7 @@
   --color-ice: var(--ice);
   --color-chip: var(--chip);
   --color-chip-fg: var(--chip-fg);
+  --color-navy: #0b1530; /* navy cố định, không đổi theo theme (màn hình, sticker) */
 
   --font-sans: var(--font-be-vietnam), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;

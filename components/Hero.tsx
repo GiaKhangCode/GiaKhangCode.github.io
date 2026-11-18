@@ -3,8 +3,9 @@
 import { profile } from "@/lib/content";
 import { useLang } from "@/lib/i18n";
 import HeroArt from "./HeroArt";
-import { ArrowUpRight, GitHub } from "./Icons";
+import { GitHub } from "./Icons";
 import ThemePill from "./ThemePill";
+import { Button } from "./ui";
 
 export default function Hero() {
   const { t } = useLang();
@@ -35,7 +36,7 @@ export default function Hero() {
               <span>
                 <span className="text-cobalt">{t.hero.roleAccent}</span> {t.hero.roleRest}
               </span>
-              <span className="mt-[0.05em] rotate-[6deg] rounded-md border-2 border-fg bg-sky px-2 py-1 font-mono text-[11px] leading-none font-medium tracking-normal text-[#0b1530] normal-case sm:text-xs">
+              <span className="mt-[0.05em] rotate-[6deg] rounded-md border-2 border-fg bg-sky px-2 py-1 font-mono text-[11px] leading-none font-medium tracking-normal text-navy normal-case sm:text-xs">
                 {t.hero.rolePrefix}
               </span>
             </p>
@@ -46,22 +47,16 @@ export default function Hero() {
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <a
-              href="#contact"
-              className="group inline-flex h-12 items-center gap-2 rounded-full bg-cobalt px-6 font-medium text-white shadow-[0_8px_24px_-8px_var(--cobalt)] transition-transform hover:-translate-y-0.5"
-            >
-              {t.hero.ctaPrimary}
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-            <a
+            <Button href="#contact">{t.hero.ctaPrimary}</Button>
+            <Button
               href={profile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-12 items-center gap-2 rounded-full border-2 border-fg px-6 font-medium transition-colors hover:bg-fg hover:text-bg"
+              external
+              variant="secondary"
+              icon={<GitHub className="h-4.5 w-4.5" />}
+              trailing={null}
             >
-              <GitHub className="h-4.5 w-4.5" />
               {t.hero.ctaSecondary}
-            </a>
+            </Button>
           </div>
         </div>
 

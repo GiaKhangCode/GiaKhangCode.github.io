@@ -10,13 +10,16 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/khang-tran-huynh-gia-ai-engineer/",
 };
 
+/** Thứ tự các section có tiêu đề — số 01, 02… và menu được sinh từ đây */
+export const sectionOrder = ["about", "skills", "certs", "projects", "contact"] as const;
+export type SectionId = (typeof sectionOrder)[number];
+
 const vi = {
   nav: {
     about: "Giới thiệu",
     skills: "Kỹ năng",
     certs: "Chứng chỉ",
     projects: "Dự án",
-    contact: "Liên hệ",
     cta: "Liên hệ",
     menu: "Mở menu",
     close: "Đóng menu",
@@ -28,7 +31,7 @@ const vi = {
     roleRest: "Engineer",
     rolePrefix: "Định hướng",
     intro:
-      "Sinh viên năm 3 ngành Hệ thống thông tin tại UIT. Tôi đang học cách đưa mô hình ngôn ngữ lớn vào những sản phẩm dùng được — từ truy xuất dữ liệu đến API phía sau.",
+      "Sinh viên năm 3 ngành Hệ thống thông tin tại UIT, ĐHQG‑HCM. Tôi đang học cách biến mô hình ngôn ngữ lớn thành sản phẩm thực tế.",
     ctaPrimary: "Liên hệ với tôi",
     ctaSecondary: "GitHub",
     themeToLight: "Chuyển sang giao diện sáng",
@@ -46,8 +49,8 @@ const vi = {
     kicker: "Giới thiệu",
     title: "Tôi quan tâm đến phần việc nằm quanh mô hình AI.",
     // **...** = từ khóa được tô nổi bật
-    p1: "Tôi là sinh viên năm ba ngành **Hệ thống thông tin** tại Trường Đại học Công nghệ Thông tin, ĐHQG-HCM. Điều tôi thấy thú vị nhất ở AI không chỉ là mô hình, mà là mọi thứ xung quanh nó: dữ liệu được tổ chức ra sao, **truy xuất thế nào cho đúng**, và đóng gói thành dịch vụ để người khác thực sự dùng được.",
-    p2: "Hiện tại tôi tập trung vào **Python**, các kỹ thuật **RAG** và hệ thống **multi-agent**, cùng với **FastAPI** để xây phần backend. Nền tảng cơ sở dữ liệu từ ngành học giúp tôi nhìn bài toán AI từ góc độ dữ liệu trước.",
+    p1: "Mô hình chỉ là một phần của bài toán. Phần còn lại — dữ liệu được tổ chức ra sao, **truy xuất thế nào cho đúng**, và đóng gói thành dịch vụ như thế nào — mới quyết định một ứng dụng AI có thật sự hữu ích hay không.",
+    p2: "Nền tảng **cơ sở dữ liệu** từ ngành học khiến tôi thường tiếp cận bài toán AI từ phía dữ liệu trước, rồi mới đến mô hình.",
     hobbyLabel: "Ngoài giờ học",
     hobbyTitle: "Cầu lông",
     hobby: "Cách tốt nhất tôi biết để rời màn hình và gặp bạn bè.",
@@ -68,7 +71,6 @@ const vi = {
       db: "Cơ sở dữ liệu",
       lang: "Ngôn ngữ",
     },
-    llmNote: "Trọng tâm hiện tại",
     hint: "Nhấn thử một phím",
     idle: "nhấn một phím bất kỳ…",
     space: "ngôn ngữ chính",
@@ -91,7 +93,7 @@ const vi = {
   contact: {
     kicker: "Liên hệ",
     title: "Cùng trao đổi nhé.",
-    lead: "Tôi đang tìm cơ hội thực tập và các dự án liên quan đến AI. Cách nhanh nhất để liên lạc với tôi là qua email — bạn có thể viết ngay ở khung bên cạnh.",
+    lead: "Có cơ hội thực tập hay dự án AI muốn trao đổi? Viết cho tôi ngay tại đây, hoặc tìm tôi qua các kênh bên dưới.",
     copy: "Sao chép",
     copied: "Đã chép!",
     linksLabel: "Hoặc tìm tôi ở",
@@ -119,7 +121,6 @@ const en: Dict = {
     skills: "Skills",
     certs: "Certificates",
     projects: "Projects",
-    contact: "Contact",
     cta: "Get in touch",
     menu: "Open menu",
     close: "Close menu",
@@ -131,7 +132,7 @@ const en: Dict = {
     roleRest: "Engineer",
     rolePrefix: "Aspiring",
     intro:
-      "Third-year Information Systems student at UIT. I’m learning how to turn large language models into products people can actually use — from retrieval to the API behind it.",
+      "Third-year Information Systems student at UIT, VNU‑HCM. I’m learning how to turn large language models into real products.",
     ctaPrimary: "Get in touch",
     ctaSecondary: "GitHub",
     themeToLight: "Switch to light theme",
@@ -148,8 +149,8 @@ const en: Dict = {
   about: {
     kicker: "About",
     title: "I care about the work that surrounds the model.",
-    p1: "I’m a third-year **Information Systems** student at the University of Information Technology, VNU-HCM. What draws me to AI isn’t only the models, but everything around them: how data is organised, **how to retrieve the right piece of it**, and how to package it into a service other people can really use.",
-    p2: "Right now I’m focused on **Python**, **RAG** techniques and **multi-agent** systems, with **FastAPI** on the backend. My database background from university makes me look at AI problems from the data side first.",
+    p1: "The model is only part of the problem. The rest — how data is organised, **how to retrieve the right piece of it**, and how it’s packaged into a service — decides whether an AI application is actually useful.",
+    p2: "My **database** background from university means I usually approach an AI problem from the data side first, and only then the model.",
     hobbyLabel: "Outside of class",
     hobbyTitle: "Badminton",
     hobby: "The best way I know to step away from the screen and catch up with friends.",
@@ -170,7 +171,6 @@ const en: Dict = {
       db: "Databases",
       lang: "Languages",
     },
-    llmNote: "Current focus",
     hint: "Go on, press a key",
     idle: "press any key…",
     space: "main language",
@@ -193,7 +193,7 @@ const en: Dict = {
   contact: {
     kicker: "Contact",
     title: "Let’s talk.",
-    lead: "I’m looking for internships and AI-related projects. Email is the fastest way to reach me — you can start writing right here.",
+    lead: "Have an internship or an AI project in mind? Write to me right here, or reach me through the channels below.",
     copy: "Copy",
     copied: "Copied!",
     linksLabel: "Or find me on",

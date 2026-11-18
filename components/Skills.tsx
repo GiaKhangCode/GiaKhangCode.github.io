@@ -13,7 +13,7 @@ import {
 } from "simple-icons";
 import { skills } from "@/lib/content";
 import { useLang } from "@/lib/i18n";
-import { Heading, Reveal } from "./Sections";
+import { Frame, Label, Reveal, Section, SectionHeading } from "./ui";
 
 /* ---------- Icon cho từng phím ---------- */
 
@@ -150,10 +150,10 @@ function Screen({ value, group, idle }: { value: string; group: string; idle: st
 
   return (
     <div
-      className="flex min-h-14 items-center justify-between gap-4 rounded-xl border-2 border-fg bg-[#0b1530] px-4 font-mono text-sm sm:px-5"
+      className="flex min-h-14 items-center justify-between gap-4 rounded-xl border-2 border-fg bg-navy px-4 font-mono text-sm sm:px-5"
       aria-live="polite"
     >
-      <p className="truncate text-[#8fb4ff]">
+      <p className="truncate text-sky">
         <span className="text-white/45">
           <span className="hidden sm:inline">~/skills </span>${" "}
         </span>
@@ -162,7 +162,7 @@ function Screen({ value, group, idle }: { value: string; group: string; idle: st
         ) : (
           <span className="text-white/45">{idle}</span>
         )}
-        <span className="ml-0.5 inline-block h-[1.05em] w-[0.55em] translate-y-[0.18em] animate-blink bg-[#8fb4ff]" />
+        <span className="ml-0.5 inline-block h-[1.05em] w-[0.55em] translate-y-[0.18em] animate-blink bg-sky" />
       </p>
       {value && group && (
         <span className="hidden shrink-0 rounded-full border border-white/20 px-2.5 py-0.5 text-[11px] text-white/60 sm:inline">
@@ -190,51 +190,47 @@ export default function Skills() {
   const show = (name: string, group: string) => setShown({ name, group });
 
   return (
-    <section id="skills" aria-labelledby="skills-title" className="bg-surface py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <Heading index="02" kicker={t.skills.kicker} title={t.skills.title} id="skills-title" />
+    <Section id="skills" tone="surface">
+      <div className="flex flex-wrap items-end justify-between gap-6">
+        <SectionHeading id="skills" />
 
-          {/* Lời nhắc + mũi tên vẽ tay */}
-          <Reveal delay={150} className="hidden items-end gap-2 pb-1 md:flex">
-            <span className="mb-3 -rotate-3 font-mono text-sm text-muted">{t.skills.hint}</span>
-            <svg viewBox="0 0 60 60" className="h-14 w-14 text-cobalt" fill="none" aria-hidden="true">
-              <path d="M6 8c22 0 38 10 40 40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              <path d="m38 40 8 9 7-10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Reveal>
-        </div>
+        {/* Lời nhắc + mũi tên vẽ tay */}
+        <Reveal delay={150} className="hidden items-end gap-2 pb-1 md:flex">
+          <span className="mb-3 -rotate-3 font-mono text-sm text-muted">{t.skills.hint}</span>
+          <svg viewBox="0 0 60 60" className="h-14 w-14 text-cobalt" fill="none" aria-hidden="true">
+            <path d="M6 8c22 0 38 10 40 40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <path d="m38 40 8 9 7-10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </Reveal>
+      </div>
 
-        <Reveal className="mt-12">
-          <div className="rounded-[1.75rem] border-2 border-fg bg-bg p-4 shadow-[10px_10px_0_var(--cobalt)] sm:p-7">
-            {/* Thanh trên của bàn phím */}
-            <div className="mb-3 flex items-center justify-between px-1" aria-hidden="true">
-              <span className="font-mono text-[11px] tracking-wider text-muted uppercase">gk-board · 01</span>
-              <span className="flex items-center gap-2">
-                {[0, 1, 2].map((i) => (
-                  <span
-                    key={i}
-                    className={`h-2 w-2 rounded-full border border-fg ${
-                      i === 0 && shown.name ? "bg-cobalt shadow-[0_0_8px_var(--cobalt)]" : "bg-transparent"
-                    }`}
-                  />
-                ))}
-              </span>
-            </div>
-
+      <Reveal className="mt-12">
+        <Frame
+          title="gk-board"
+          right={
+            // Đèn báo — sáng khi có phím được nhấn
+            <span
+              className={`h-2 w-2 rounded-full border border-fg transition-colors ${
+                shown.name ? "bg-cobalt shadow-[0_0_8px_var(--cobalt)]" : ""
+              }`}
+              aria-hidden="true"
+            />
+          }
+        >
+          <div className="p-4 sm:p-7">
             <Screen value={shown.name} group={shown.group} idle={t.skills.idle} />
 
             <div className="mt-7 space-y-6">
               {rows.map((row) => (
                 <div key={row.label} className="grid gap-3 lg:grid-cols-[11rem_1fr] lg:items-center lg:gap-6">
-                  <p className="flex items-center gap-2 font-mono text-xs tracking-wider text-muted uppercase">
+                  <Label className="flex items-center gap-2">
                     {row.label}
                     {row.accent && (
                       <span className="rounded-full bg-cobalt px-2 py-0.5 text-[10px] tracking-normal text-white normal-case">
                         {t.skills.focusTag}
                       </span>
                     )}
-                  </p>
+                  </Label>
                   <div className="flex flex-wrap gap-x-3 gap-y-4 pb-[5px]">
                     {row.items.map((name) => (
                       <Key key={name} name={name} accent={row.accent} onPress={() => show(name, row.label)} />
@@ -245,7 +241,7 @@ export default function Skills() {
 
               {/* Hàng phím space */}
               <div className="grid gap-3 border-t-2 border-dashed border-line pt-6 lg:grid-cols-[11rem_1fr] lg:items-center lg:gap-6">
-                <p className="font-mono text-xs tracking-wider text-muted uppercase">{g.lang}</p>
+                <Label>{g.lang}</Label>
                 <div className="flex flex-wrap gap-x-3 gap-y-4 pb-[5px]">
                   <Key name="Python" sub={t.skills.space} wide onPress={() => show("Python", g.lang)} />
                   <Key name="SQL" onPress={() => show("SQL", g.lang)} />
@@ -253,8 +249,8 @@ export default function Skills() {
               </div>
             </div>
           </div>
-        </Reveal>
-      </div>
-    </section>
+        </Frame>
+      </Reveal>
+    </Section>
   );
 }
